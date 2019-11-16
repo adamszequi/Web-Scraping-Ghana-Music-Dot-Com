@@ -1,0 +1,16 @@
+def automate_website_scraping(rangestart,day_number,month_number):
+    url=[]
+    from bs4 import BeautifulSoup
+    import requests
+    for day in range(rangestart,day_number):
+        for month in range(rangestart,month_number):
+            url.append('https://www.ghanamusic.com/charts/top-10-countdown/2019/'+str(month)+\
+            '/'+str(day)+'/2019')
+    return url
+    
+from bs4 import BeautifulSoup
+import requests
+for sites in automate_website_scraping(1,8,32):
+    soup=BeautifulSoup(requests.get(sites).text,'html5lib')
+divs=soup('ol')
+print(len(divs))
